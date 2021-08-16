@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar</title>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div th:replace="fragmentos/index :: header"></div>
+    <div class="container mt-5">
+        <h1>Alterar Aluno</h1>
+    
+        <form action="/alterarAluno" method="POST" th:object="${aluno}">
+            <input type="text" hidden th:field="*{id}">
+            <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('nome')}">
+                <label for="nome" th:errors= *{nome}></label>
+            </div>
+            
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" th:field="*{nome}"> 
+            
+            <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('curso')}">
+                <label for="curso" th:errors= *{curso}></label>
+            </div>
+
+            <label for="curso">Curso</label>
+            <select type="text" class="form-control" id="curso" name="curso" th:field="*{curso}"> 
+                <option th:each="curso : ${T(com.project1.academy.Enums.Curso).values()}" th:value="${curso}" th:text="${curso}"></option>
+            </select>
+            
+            <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('turno')}">
+                <label for="turno" th:errors= *{turno}></label>
+            </div>
+
+            <label for="turno">Turno</label>
+            <select type="text" class="form-control" id="turno" name="turno" th:field="*{turno}"> 
+                <option th:each="turno : ${T(com.project1.academy.Enums.Turno).values()}" th:value="${turno}" th:text="${turno}"></option>
+            </select>
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success" name="btn-alterar"> alterar</button> 
+                <a class="btn btn-warning" th:href="@{/listAlunos}"> Voltar</a> 
+            </div>
+        </form>
+    </div>
+
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

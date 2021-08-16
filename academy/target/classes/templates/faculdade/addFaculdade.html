@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Aluno</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div th:replace="fragmentos/index :: header"></div>
+    <div class="container mt-5 mb-5">
+        <h1>Nova Facudade</h1>
+    
+        <form action="addFaculdade" method="POST" th:object="${faculdade}">
+            <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('nome')}">
+                <label for="nome" th:errors= *{nome}></label>
+            </div>
+            
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" th:field="*{nome}"> 
+            
+            <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('estado')}">
+                <label for="estado" th:errors= *{estado}></label>
+            </div>
+
+            <label for="estado">Estado</label>
+            <input type="text" class="form-control" id="estado" placeholder="Estado" name="estado" th:field="*{estado}"> 
+            
+            
+            <div class="alert alert-danger mt-3" th:if="${#fields.hasErrors('cidade')}">
+                <label for="cidade" th:errors= *{cidade}></label>
+            </div>
+
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade" th:field="*{cidade}"> 
+            
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success" name="btn-cadastrar"> cadastrar</button> 
+                <a class="btn btn-warning" th:href="@{/listFaculdades}"> Lista faculdades</a> 
+            </div>
+        </form>
+        </div>
+    </div>
+
+
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

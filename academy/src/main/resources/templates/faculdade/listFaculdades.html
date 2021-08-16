@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facudades</title>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+    <div th:replace="fragmentos/index :: header"></div>
+
+    <div class="container-sm p-0 mt-3 mb-5">
+        <h1 class="">Facudades</h1>
+        
+        <div class=" table-responsive  ">
+            <table class="table  table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Estado</th>
+                        <th>Cidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr scope="row"  th:each="faculdade : ${faculdades}">
+                        <td th:text="${faculdade.nome}"></td>
+                        <td th:text="${faculdade.estado}"></td>
+                        <td th:text="${faculdade.cidade}"></td>
+        
+                        <td><a th:href="@{alterar/{id}(id=${faculdade.id})}" class="btn btn-warning">editar</a></td>
+                        <td><button class="btn btn-danger" data-toggle="modal" th:data-target="'#modal'+${faculdade.id}">deletar</button></td>
+                    </tr>
+                    
+                    <!-- The Modal -->
+                    <div class="modal" th:each="faculdade : ${faculdades}" th:id="'modal'+${faculdade.id}">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title">Deletar Faculdade</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                Deseja mesmo deletar esta faculdade?
+                                </div>
+                                
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <form action="/" method="POST">
+                                        <button type="submit" class="btn btn-danger" name="btn-deletar">Deletar</button>
+                                    </form>
+                                    
+                                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </tbody>
+            </table>
+            
+        </div>
+        <div th:if="${#lists.isEmpty(faculdades)}" class=" container rounded bg-primary text-white font-weight-bold p-2 justify-content-center">Ainda não há faculdades cadastradas.</div>
+        <a class="btn btn-success ml-2 ml-sm-0 mt-3" th:href="@{/}"> Adicionar faculdade</a> 
+    </div>
+    
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

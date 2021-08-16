@@ -1,0 +1,26 @@
+
+.header-roxo{
+    background-color: rgb(57, 51, 95);
+}
+
+
+.btn-roxo{
+    background-color: rgb(218, 198, 255);
+    
+}
+
+.neon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/img/wallpaper.jpg");
+    background-repeat: no-repeat ;
+    height: 100vh;
+    width: 100%;
+}
+.neon .sombra{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.097);
+}
