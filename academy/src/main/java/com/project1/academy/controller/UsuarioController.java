@@ -44,7 +44,7 @@ public class UsuarioController {
                 mv.addObject("msg", "Usuário não encontrado. Tente novamente.");
                 mv.setViewName("usuario/login");
             }else{
-                session.setAttribute("userLogado", userLogin);
+                session.setAttribute("usuarioLogado", userLogin);
                 mv.setViewName("redirect:/");
             }
         }
@@ -78,5 +78,9 @@ public class UsuarioController {
         return mv;
     }
 
-    
+    @PostMapping("/logout")
+    public ModelAndView logout(HttpSession session){
+        session.invalidate();
+        return login();
+    }
 }

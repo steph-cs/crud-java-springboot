@@ -32,8 +32,11 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/cadastro}">Cadastro Usuario</a>
                 </li>
-                <li class="nav-item">
-                    <button class="btn btn-primary">Sair</button>
+                <li class="nav-item" th:if="${session.usuarioLogado}">
+                    <form action="/logout" method="post">
+                        <button type="submit" class="btn btn-primary">Sair</button>
+                    </form>
+                    
                 </li>
             </ul>
         </div>
